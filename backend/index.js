@@ -30,7 +30,13 @@ const connectDB=async()=>{
 dotenv.config()
 app.use(express.json())
 app.use("/images",express.static(path.join(__dirname,"/images")))
-app.use(cors({origin:"https://citizenjournalism.onrender.com/",credentials:true}))
+app.use(cors({
+  origin: "https://frontend-citizenjournalism.onrender.com",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
+
 app.use(cookieParser())
 app.use("/api/auth",authRoute)
 app.use("/api/users",userRoute)
@@ -40,7 +46,6 @@ app.use("/api/comments",commentRoute)
 
 
 app.get('/', (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials", "true");  
   res.send('API is running....'); 
 });
 
