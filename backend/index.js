@@ -23,26 +23,23 @@ const connectDB=async()=>{
     }
 }
 
-const _dirname = path.resolve();
+
 
 
 //middlewares
 dotenv.config()
 app.use(express.json())
-app.use("/images",express.static(path.join(_dirname,"/images")))
-app.use(cors({origin:"http://localhost:5173",credentials:true}))
+app.use("/images",express.static(path.join(__dirname,"/images")))
+app.use(cors({origin:"http://localhost:5174",credentials:true}))
 app.use(cookieParser())
 app.use("/api/auth",authRoute)
 app.use("/api/users",userRoute)
 app.use("/api/posts",postRoute)
 app.use("/api/comments",commentRoute)
 
-app.use(express.static(path.join(_dirname, '/frontend/dist')));
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(_dirname, 'frontend', 'dist','index.html'));
 
-});
+
 
 //image upload
 const storage=multer.diskStorage({
