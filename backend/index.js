@@ -39,8 +39,17 @@ app.use("/api/comments",commentRoute)
 
 
 
+app.get('/', (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials", "true");  
+  res.send('API is running....'); 
+});
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
 
+// backend
 
 
 //image upload
