@@ -39,6 +39,18 @@ app.use("/api/comments",commentRoute)
 
 
 
+app.get('/', (req, res) => {
+  res.send('Welcome to your API!'); // You can customize this response
+});
+
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
+// ... (your existing code)
+
 
 
 //image upload
